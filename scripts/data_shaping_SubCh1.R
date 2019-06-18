@@ -10,7 +10,7 @@ library(tidyr)
 library(readr)
 
 ## Load in data
-train <- read_csv("SubCh1_TrainingData.csv")
+train <- read_csv("../data/SubCh1_TrainingData.csv")
 
 ## Get value column names by which to pivot
 valcols <- colnames(train %>% select(-c(Sample_Name, Isolate, Timepoint, Treatment, BioRep, DHA_IC50)))
@@ -26,5 +26,32 @@ train.reshaped <- train %>%
 train.reshaped$DHA_IC50 <- train %>% select(c(Isolate, DHA_IC50)) %>% unique()
 
 ## Write out dataset
-write_csv(train.reshaped, "SubCh1_TrainingData_Reshaped.csv")
+write_csv(train.reshaped, "../data/SubCh1_TrainingData_Reshaped.csv")
 
+
+
+############################
+## Machine Learning Models
+
+## Load in data
+train <- read_csv("../data/SubCh1_TrainingData.csv") %>% na.omit()
+
+## Generalized Linear Model
+glm.model <- glm(DHA_IC50 ~ .,
+                 train %>%
+                   select(-Sample_Name,
+                          -Isolate) %>% 
+                   na.omit(),
+                 family = "gaussian")
+library(caret)
+varImp(glm.model)
+
+## Random Forest
+
+library(randomForest)
+rf.model <- randomForest(DHA_IC50 ~ .,
+                         train %>%
+                           select(-Sample_Name,
+                                  -Isolate) %>%
+                           na.omit())
+importance(fit_rf)
