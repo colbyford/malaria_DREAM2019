@@ -9,5 +9,9 @@ The Malaria DREAM Challenge is open to anyone interested in contributing to the 
 ## Subchallenge 1
 __Topic:__ Predict the Artemisinin (Art) IC50 (drug concentration at which 50% of parasites die) of malaria isolates using in vitro transcriptomics data.
 
+### Resources:
+- [Data Prep Script](scripts/Data Prep.py)
+- [Machine Learning](scripts/Subchallenge1 - Model Training.py)
+
 ## Subchallenge 2
 __Topic:__ Utilizing a previously published in vivo transcription data set from [Mok et al,. Science 2015](https://www.ncbi.nlm.nih.gov/pubmed/25502316), predict the resistance status of malaria isolates utilizing in vitro transcription data.
