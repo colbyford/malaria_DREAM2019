@@ -1,5 +1,5 @@
 # Malaria DREAM Challenge 2019
-<h3 align = "right">Written by: Colby T. Ford, Ph.D.</h3>
+<h3 align = "right">Submission by: Colby T. Ford, Ph.D.</h3>
 
 ## About the Challenge
 [Challenge Link](https://www.synapse.org/#!Synapse:syn16924919/wiki/)
