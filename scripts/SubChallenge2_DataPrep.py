@@ -56,6 +56,10 @@ display(dataset)
 
 # COMMAND ----------
 
+dataset.describe()
+
+# COMMAND ----------
+
 # DBTITLE 1,Define Columns
 
 label = "ClearanceRate"
@@ -5020,10 +5024,6 @@ numericalColumns = ["PF3D7_0100100",
 
 # COMMAND ----------
 
-
-
-# COMMAND ----------
-
 from pyspark.ml import Pipeline
 from pyspark.ml.feature import OneHotEncoder, OneHotEncoderEstimator, StringIndexer, VectorAssembler
 
@@ -5046,7 +5046,7 @@ stages += [label_stringIndexer]
 
 # Transform all features into a vector using VectorAssembler
 assemblerInputs = categoricalColumnsclassVec + numericalColumns
-assembler = VectorAssembler(inputCols = assemblerInputs, outputCol="features")
+assembler = VectorAssembler(inputCols = assemblerInputs, outputCol="features").setHandleInvalid("keep")
 stages += [assembler]
 
 prepPipeline = Pipeline().setStages(stages)
@@ -5056,7 +5056,7 @@ dataset = pipelineModel.transform(dataset)
 # COMMAND ----------
 
 # DBTITLE 1,Save Pipeline Model
-# dbutils.fs.rm("/mnt/malaria/sc2/pipeline", True)
+dbutils.fs.rm("/mnt/malaria/sc2/pipeline", True)
 pipelineModel.save("/mnt/malaria/sc2/pipeline")
 display(dbutils.fs.ls("/mnt/malaria/sc2/pipeline"))
 
