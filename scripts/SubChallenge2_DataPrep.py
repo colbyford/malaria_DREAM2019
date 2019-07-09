@@ -56,7 +56,7 @@ display(dataset)
 
 # COMMAND ----------
 
-dataset.describe()
+display(dataset.describe())
 
 # COMMAND ----------
 
@@ -65,8 +65,8 @@ dataset.describe()
 label = "ClearanceRate"
 
 # Note: "Country" Can't be used as the test data only contains "Thailand_Myanmar_Border", which isn't in the training data.
-categoricalColumns = ["Asexual_stage__hpi_",
-                      "Kmeans_Grp"]
+# Note: "Kmeans_Grp" Can't be used as this is not included in the testing data.
+categoricalColumns = ["Asexual_stage__hpi_"]
 
 numericalColumns = ["PF3D7_0100100",
                     "PF3D7_0100200",
@@ -5062,4 +5062,4 @@ display(dbutils.fs.ls("/mnt/malaria/sc2/pipeline"))
 
 # COMMAND ----------
 
-display(dataset.select("Sample_Names", "label","features"))
+# display(dataset.select("Sample_Names", "label","features"))

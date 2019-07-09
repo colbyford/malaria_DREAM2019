@@ -74,13 +74,167 @@ outputDf.T
 from pyspark.ml import PipelineModel
 from pyspark.sql.functions import col
 
-data = spark.read.format("csv") \
+train = spark.read.format("csv") \
                .options(header = True, inferSchema = True) \
                .load("/mnt/malaria/SubCh1_TrainingData.csv")
 
 pipeline = PipelineModel.load("/mnt/malaria/sc1/pipeline/")
 
-data = pipeline.transform(data).select(col("label"), col("features"))
+# COMMAND ----------
+
+# DBTITLE 1,Reshape Data
+from pyspark.sql.functions import first, col
+
+## Separate Dependent Variable
+y = train.select(col("Isolate"),
+                 col("DHA_IC50")) \
+         .distinct()
+
+############################################################################
+print("1. Create Slice [Timepoint: 24HR, Treatment: DHA, BioRep: BRep1]")
+hr24_trDHA_br1 = train.drop("Sample_Name","DHA_IC50") \
+                      .filter((col("Timepoint") == "24HR") &
+                              (col("Treatment") == "DHA") &
+                              (col("BioRep") == "BRep1"))
+## Rename Columns
+column_list = hr24_trDHA_br1.columns
+prefix = "hr24_trDHA_br1_"
+new_column_list = [prefix + s if s != "Isolate" else s for s in column_list]
+
+column_mapping = [[o, n] for o, n in zip(column_list, new_column_list)]
+
+hr24_trDHA_br1 = hr24_trDHA_br1.select(list(map(lambda old, new: col(old).alias(new),*zip(*column_mapping))))
+############################################################################
+
+############################################################################
+print("2. Create Slice [Timepoint: 24HR, Treatment: DHA, BioRep: BRep2]")
+hr24_trDHA_br2 = train.drop("Sample_Name","DHA_IC50") \
+                      .filter((col("Timepoint") == "24HR") &
+                              (col("Treatment") == "DHA") &
+                              (col("BioRep") == "BRep2"))
+## Rename Columns
+column_list = hr24_trDHA_br2.columns
+prefix = "hr24_trDHA_br2_"
+new_column_list = [prefix + s if s != "Isolate" else s for s in column_list]
+
+column_mapping = [[o, n] for o, n in zip(column_list, new_column_list)]
+
+hr24_trDHA_br2 = hr24_trDHA_br2.select(list(map(lambda old, new: col(old).alias(new),*zip(*column_mapping))))
+############################################################################
+
+############################################################################
+print("3. Create Slice [Timepoint: 24HR, Treatment: UT, BioRep: BRep1]")
+hr24_trUT_br1 = train.drop("Sample_Name","DHA_IC50") \
+                      .filter((col("Timepoint") == "24HR") &
+                              (col("Treatment") == "UT") &
+                              (col("BioRep") == "BRep1"))
+## Rename Columns
+column_list = hr24_trUT_br1.columns
+prefix = "hr24_trUT_br1_"
+new_column_list = [prefix + s if s != "Isolate" else s for s in column_list]
+
+column_mapping = [[o, n] for o, n in zip(column_list, new_column_list)]
+
+hr24_trUT_br1 = hr24_trUT_br1.select(list(map(lambda old, new: col(old).alias(new),*zip(*column_mapping))))
+############################################################################
+
+############################################################################
+print("4. Create Slice [Timepoint: 24HR, Treatment: UT, BioRep: BRep2]")
+hr24_trUT_br2 = train.drop("Sample_Name","DHA_IC50") \
+                      .filter((col("Timepoint") == "24HR") &
+                              (col("Treatment") == "UT") &
+                              (col("BioRep") == "BRep2"))
+## Rename Columns
+column_list = hr24_trUT_br2.columns
+prefix = "hr24_trUT_br2_"
+new_column_list = [prefix + s if s != "Isolate" else s for s in column_list]
+
+column_mapping = [[o, n] for o, n in zip(column_list, new_column_list)]
+
+hr24_trUT_br2 = hr24_trUT_br2.select(list(map(lambda old, new: col(old).alias(new),*zip(*column_mapping))))
+############################################################################
+
+############################################################################
+print("5. Create Slice [Timepoint: 6HR, Treatment: DHA, BioRep: BRep1]")
+hr6_trDHA_br1 = train.drop("Sample_Name","DHA_IC50") \
+                      .filter((col("Timepoint") == "6HR") &
+                              (col("Treatment") == "DHA") &
+                              (col("BioRep") == "BRep1"))
+## Rename Columns
+column_list = hr6_trDHA_br1.columns
+prefix = "hr6_trDHA_br1_"
+new_column_list = [prefix + s if s != "Isolate" else s for s in column_list]
+
+column_mapping = [[o, n] for o, n in zip(column_list, new_column_list)]
+
+hr6_trDHA_br1 = hr6_trDHA_br1.select(list(map(lambda old, new: col(old).alias(new),*zip(*column_mapping))))
+############################################################################
+
+############################################################################
+print("6. Create Slice [Timepoint: 6HR, Treatment: DHA, BioRep: BRep2]")
+hr6_trDHA_br2 = train.drop("Sample_Name","DHA_IC50") \
+                      .filter((col("Timepoint") == "6HR") &
+                              (col("Treatment") == "DHA") &
+                              (col("BioRep") == "BRep2"))
+## Rename Columns
+column_list = hr6_trDHA_br2.columns
+prefix = "hr6_trDHA_br2_"
+new_column_list = [prefix + s if s != "Isolate" else s for s in column_list]
+
+column_mapping = [[o, n] for o, n in zip(column_list, new_column_list)]
+
+hr6_trDHA_br2 = hr6_trDHA_br2.select(list(map(lambda old, new: col(old).alias(new),*zip(*column_mapping))))
+############################################################################
+
+############################################################################
+print("7. Create Slice [Timepoint: 6HR, Treatment: UT, BioRep: BRep1]")
+hr6_trUT_br1 = train.drop("Sample_Name","DHA_IC50") \
+                      .filter((col("Timepoint") == "6HR") &
+                              (col("Treatment") == "UT") &
+                              (col("BioRep") == "BRep1"))
+## Rename Columns
+column_list = hr6_trUT_br1.columns
+prefix = "hr6_trUT_br1_"
+new_column_list = [prefix + s if s != "Isolate" else s for s in column_list]
+
+column_mapping = [[o, n] for o, n in zip(column_list, new_column_list)]
+
+hr6_trUT_br1 = hr6_trUT_br1.select(list(map(lambda old, new: col(old).alias(new),*zip(*column_mapping))))
+############################################################################
+
+############################################################################
+print("8. Create Slice [Timepoint: 6HR, Treatment: UT, BioRep: BRep2]")
+hr6_trUT_br2 = train.drop("Sample_Name","DHA_IC50") \
+                      .filter((col("Timepoint") == "6HR") &
+                              (col("Treatment") == "UT") &
+                              (col("BioRep") == "BRep2"))
+## Rename Columns
+column_list = hr6_trUT_br2.columns
+prefix = "hr6_trUT_br2_"
+new_column_list = [prefix + s if s != "Isolate" else s for s in column_list]
+
+column_mapping = [[o, n] for o, n in zip(column_list, new_column_list)]
+
+hr6_trUT_br2 = hr6_trUT_br2.select(list(map(lambda old, new: col(old).alias(new),*zip(*column_mapping))))
+############################################################################
+
+## Join Slices Together
+print("Joining all together...")
+data = y.join(hr24_trDHA_br1, "Isolate", how='left') \
+        .join(hr24_trDHA_br2, "Isolate", how='left') \
+        .join(hr24_trUT_br1, "Isolate", how='left') \
+        .join(hr24_trUT_br2, "Isolate", how='left') \
+        .join(hr6_trDHA_br1, "Isolate", how='left') \
+        .join(hr6_trDHA_br2, "Isolate", how='left') \
+        .join(hr6_trUT_br1, "Isolate", how='left') \
+        .join(hr6_trUT_br2, "Isolate", how='left') \
+
+#display(data)
+
+# COMMAND ----------
+
+# DBTITLE 1,Transform Data Through Pipeline
+data = pipeline.transform(data).select(col("DHA_IC50"), col("features")).withColumnRenamed("DHA_IC50","label")
 train, test = data.randomSplit([0.75, 0.25], 1337)
 
 # test = spark.read.format("csv") \
@@ -93,6 +247,7 @@ display(train)
 # COMMAND ----------
 
 # DBTITLE 1,Data Prep - Convert Spark DataFrame to Numpy Array
+import numpy as np
 ## Training Data
 pdtrain = train.toPandas()
 trainseries = pdtrain['features'].apply(lambda x : np.array(x.toArray())).as_matrix().reshape(-1,1)
@@ -129,126 +284,3 @@ automl_config = AutoMLConfig(task = 'regression',
 
 # DBTITLE 1,Submit to AutoML
 local_run = experiment.submit(automl_config, show_output = True)
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC -----------------------------
-# MAGIC ### Train with Spark MLlib
-
-# COMMAND ----------
-
-# DBTITLE 1,Linear Regression
-from pyspark.ml.regression import LinearRegression
-from pyspark.ml.tuning import ParamGridBuilder, CrossValidator
-from pyspark.ml.evaluation import RegressionEvaluator
-
-# Create initial LinearRegression model
-lr = LinearRegression(labelCol="label", featuresCol="features")
-
-
-# Create ParamGrid for Cross Validation
-lrparamGrid = (ParamGridBuilder()
-             #.addGrid(lr.regParam, [0.001, 0.01, 0.1, 0.5, 1.0, 2.0])
-               .addGrid(lr.regParam, [0.01, 0.1, 0.5])
-             #.addGrid(lr.elasticNetParam, [0.0, 0.25, 0.5, 0.75, 1.0])
-               .addGrid(lr.elasticNetParam, [0.0, 0.5, 1.0])
-             #.addGrid(lr.maxIter, [1, 5, 10, 20, 50])
-               .addGrid(lr.maxIter, [1, 5, 10])
-             .build())
-
-# Evaluate model
-lrevaluator = RegressionEvaluator(predictionCol="prediction", labelCol="label", metricName="rmse")
-
-# Create 5-fold CrossValidator
-lrcv = CrossValidator(estimator = lr,
-                    estimatorParamMaps = lrparamGrid,
-                    evaluator = lrevaluator,
-                    numFolds = 5)
-
-# Run cross validations
-lrcvModel = lrcv.fit(train)
-print(lrcvModel)
-
-# Get Model Summary Statistics
-# lrcvSummary = lrcvModel.bestModel.summary
-# print("Coefficient Standard Errors: " + str(lrcvSummary.coefficientStandardErrors))
-# print("P Values: " + str(lrcvSummary.pValues)) # Last element is the intercept
-
-# Use test set here so we can measure the accuracy of our model on new data
-lrpredictions = lrcvModel.transform(test)
-
-# COMMAND ----------
-
-# cvModel uses the best model found from the Cross Validation
-# Evaluate best model
-print('RMSE:', lrevaluator.evaluate(lrpredictions))
-
-# COMMAND ----------
-
-from pyspark.ml.regression import RandomForestRegressor
-from pyspark.ml.tuning import ParamGridBuilder, CrossValidator
-from pyspark.ml.evaluation import RegressionEvaluator
-
-# Create an initial RandomForest model.
-rf = RandomForestRegressor(labelCol="label", featuresCol="features")
-
-# Evaluate model
-rfevaluator = RegressionEvaluator(predictionCol="prediction", labelCol="label", metricName="rmse")
-
-# Create ParamGrid for Cross Validation
-rfparamGrid = (ParamGridBuilder()
-             #.addGrid(rf.maxDepth, [2, 5, 10, 20, 30])
-               .addGrid(rf.maxDepth, [2, 5, 10])
-             #.addGrid(rf.maxBins, [10, 20, 40, 80, 100])
-               .addGrid(rf.maxBins, [5, 10, 20])
-             #.addGrid(rf.numTrees, [5, 20, 50, 100, 500])
-               .addGrid(rf.numTrees, [5, 20, 50])
-             .build())
-
-# Create 5-fold CrossValidator
-rfcv = CrossValidator(estimator = rf,
-                      estimatorParamMaps = rfparamGrid,
-                      evaluator = rfevaluator,
-                      numFolds = 5)
-
-# Run cross validations.
-rfcvModel = rfcv.fit(train)
-print(rfcvModel)
-
-# Use test set here so we can measure the accuracy of our model on new data
-rfpredictions = rfcvModel.transform(test)
-
-# COMMAND ----------
-
-# cvModel uses the best model found from the Cross Validation
-# Evaluate best model
-print('RMSE:', rfevaluator.evaluate(rfpredictions))
-
-# COMMAND ----------
-
-# DBTITLE 1,Save Models
-lrcvModel.save("/mnt/malaria/sc1/trainedmodels/lr")
-rfcvModel.save("/mnt/malaria/sc1/trainedmodels/rf")
-
-display(dbutils.fs.ls("/mnt/trainedmodels/"))
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC ----------------------
-# MAGIC ### Score Submission Data
-
-# COMMAND ----------
-
-subdata = spark.read.format("csv") \
-               .options(header = True, inferSchema = True) \
-               .load("/mnt/malaria/SubCh1_TestData.csv")
-
-pipeline = PipelineModel.load("/mnt/malaria/sc1/pipeline/")
-
-subdata = pipeline.transform(subdata).select(col("label"), col("features"))
-
-output = lrcvModel.bestModel.transform(subdata)
-
-display(output)

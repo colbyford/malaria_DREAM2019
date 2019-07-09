@@ -1,7 +1,7 @@
 # Databricks notebook source
 # MAGIC %md
 # MAGIC # Malaria DREAM Challenge 2019
-# MAGIC ## Subchallenge 2
+# MAGIC ## Subchallenge 2 - Scorer
 # MAGIC ------------------------------
 # MAGIC ### AutoML - Azure Machine Learning Service
 
@@ -129,3 +129,23 @@ automl_config = AutoMLConfig(task = 'classification',
 
 # DBTITLE 1,Submit to AutoML
 local_run = experiment.submit(automl_config, show_output = True)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ----------------------
+# MAGIC ### Score Submission Data
+
+# COMMAND ----------
+
+subdata = spark.read.format("csv") \
+               .options(header = True, inferSchema = True) \
+               .load("/mnt/malaria/SubCh1_TestData.csv")
+
+pipeline = PipelineModel.load("/mnt/malaria/sc2/pipeline/")
+
+subdata = pipeline.transform(subdata).select(col("label"), col("features"))
+
+output = lrcvModel.bestModel.transform(subdata)
+
+display(output)

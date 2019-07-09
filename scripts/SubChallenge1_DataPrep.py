@@ -217,7 +217,7 @@ display(shaped_train)
 # COMMAND ----------
 
 # DBTITLE 1,Write to Blob
-shaped_train.coalesce(1).write.mode('overwrite').option("header", "true").csv("/mnt/malaria/SubCh1_TrainingData_Shaped.csv")
+# shaped_train.coalesce(1).write.mode('overwrite').option("header", "true").csv("/mnt/malaria/SubCh1_TrainingData_Shaped.csv")
 
 # COMMAND ----------
 
@@ -281,7 +281,7 @@ stages += [label_stringIndexer]
 
 # Transform all features into a vector using VectorAssembler
 assemblerInputs = categoricalColumnsclassVec + numericalColumns
-assembler = VectorAssembler(inputCols = assemblerInputs, outputCol="features")
+assembler = VectorAssembler(inputCols = assemblerInputs, outputCol="features").setHandleInvalid("keep")
 stages += [assembler]
 
 prepPipeline = Pipeline().setStages(stages)
@@ -291,10 +291,13 @@ dataset = pipelineModel.transform(shaped_train)
 # COMMAND ----------
 
 # DBTITLE 1,Save Pipeline Model
-# dbutils.fs.rm("/mnt/malaria/sc1/pipeline", True)
+dbutils.fs.rm("/mnt/malaria/sc1/pipeline", True)
 pipelineModel.save("/mnt/malaria/sc1/pipeline")
 display(dbutils.fs.ls("/mnt/malaria/sc1/pipeline"))
 
 # COMMAND ----------
 
 display(dataset.select("Isolate", "label","features"))
+
+# COMMAND ----------
+
