@@ -77,6 +77,9 @@ y_train = pickle.load(open("../data/sc2_y_train.pkl", "rb"))
 X_test = pickle.load(open("../data/sc2_X_test.pkl", "rb"))
 y_test = pickle.load(open("../data/sc2_y_test.pkl", "rb"))
 
+X_all = np.concatenate((X_train,X_test))
+y_all = np.concatenate((y_train,y_test))
+
 """
 Configure AutoML
 """
@@ -89,11 +92,11 @@ automl_config = AutoMLConfig(task = 'regression',
                              preprocess = True,
                              n_cross_validations = 5,
                              verbosity = logging.INFO,
-                             X = X_train, 
-                             y = y_train,
+                             X = X_all, 
+                             y = y_all,
                              path = project_folder)
 
 """
 Submit to AutoML
 """
-local_run = experiment.submit(automl_config, show_output = False)
+local_run = experiment.submit(automl_config, show_output = True)
