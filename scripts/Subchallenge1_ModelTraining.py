@@ -264,28 +264,21 @@ print(y_test)
 
 # COMMAND ----------
 
-import pickle
-pickle.dump(X_train, open( "sc2_X_train.pkl", "wb" ) )
-dbutils.fs.cp("file:/databricks/driver/sc2_X_train.pkl", "/mnt/malaria/sc2/sc2_X_train")
-display(dbutils.fs.ls("/mnt/malaria/sc2/sc2_X_train"))
-
-# COMMAND ----------
-
 # DBTITLE 1,Save Arrays to Blob as Pickles
 import pickle
-pickle.dump(X_train, open( "sc2_X_train.pkl", "wb" ) )
-dbutils.fs.cp("file:/databricks/driver/sc2_X_train.pkl", "/mnt/malaria/sc2/sc2_X_train")
+pickle.dump(X_train, open( "sc1_X_train.pkl", "wb" ) )
+dbutils.fs.cp("file:/databricks/driver/sc1_X_train.pkl", "/mnt/malaria/sc1/sc1_X_train")
 
-pickle.dump(y_train, open( "sc2_y_train.pkl", "wb" ) )
-dbutils.fs.cp("file:/databricks/driver/sc2_y_train.pkl", "/mnt/malaria/sc2/sc2_X_train")
+pickle.dump(y_train, open( "sc1_y_train.pkl", "wb" ) )
+dbutils.fs.cp("file:/databricks/driver/sc1_y_train.pkl", "/mnt/malaria/sc1/sc1_X_train")
 
-pickle.dump(X_test, open( "sc2_X_test.pkl", "wb" ) )
-dbutils.fs.cp("file:/databricks/driver/sc2_X_test.pkl", "/mnt/malaria/sc2/sc2_X_train")
+pickle.dump(X_test, open( "sc1_X_test.pkl", "wb" ) )
+dbutils.fs.cp("file:/databricks/driver/sc1_X_test.pkl", "/mnt/malaria/sc1/sc1_X_train")
 
-pickle.dump(y_test, open( "sc2_y_test.pkl", "wb" ) )
-dbutils.fs.cp("file:/databricks/driver/sc2_y_test.pkl", "/mnt/malaria/sc2/sc2_X_train")
+pickle.dump(y_test, open( "sc1_y_test.pkl", "wb" ) )
+dbutils.fs.cp("file:/databricks/driver/sc1_y_test.pkl", "/mnt/malaria/sc1/sc1_X_train")
 
-display(dbutils.fs.ls("/mnt/malaria/sc2/sc2_X_train"))
+display(dbutils.fs.ls("/mnt/malaria/sc1/sc1_X_train"))
 
 
 # COMMAND ----------
