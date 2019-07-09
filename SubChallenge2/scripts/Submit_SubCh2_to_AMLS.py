@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Malaria DREAM Challenge 2019
-Script to Submit SubChallenge 1 Data to AMLS
+Script to Submit SubChallenge 2 Data to AMLS
 By: Colby T. Ford, Ph.D.
 """
 #%%
@@ -53,9 +53,9 @@ Define the Experiment and Project
 #ws = Workspace.from_config()
 
 # choose a name for experiment
-experiment_name = 'automl-malariadream-sc1'
+experiment_name = 'automl-malariadream-sc2'
 # project folder
-project_folder = './aml_project/automl-malariadream-sc1'
+project_folder = './aml_project/automl-malariadream-sc2'
 
 experiment=Experiment(ws, experiment_name)
 
@@ -76,17 +76,17 @@ outputDf.T
 Load in Data
 """
 import pickle
-X_train = pickle.load(open("../data/sc1_X_train.pkl", "rb"))
-y_train = pickle.load(open("../data/sc1_y_train.pkl", "rb"))
+X_train = pickle.load(open("../data/sc2_X_train.pkl", "rb"))
+y_train = pickle.load(open("../data/sc2_y_train.pkl", "rb"))
 
 #%%
 """
 Configure AutoML
 """
-automl_config = AutoMLConfig(task = 'regression',
+automl_config = AutoMLConfig(task = 'classification',
                              name = experiment_name,
                              debug_log = 'automl_errors.log',
-                             primary_metric = 'normalized_root_mean_squared_error',
+                             primary_metric = 'AUC_weighted',
                              iteration_timeout_minutes = 20,
                              iterations = 100,
                              preprocess = True,
