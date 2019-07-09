@@ -245,7 +245,7 @@ subdata = spark.read.format("csv") \
                .options(header = True, inferSchema = True) \
                .load("/mnt/malaria/SubCh1_TestData.csv")
 
-pipeline = PipelineModel.load("/mnt/malaria/sc1/pipeline/")
+pipeline = PipelineModel.load("/mnt/malaria/sc2/pipeline/")
 
 subdata = pipeline.transform(subdata).select(col("label"), col("features"))
 
