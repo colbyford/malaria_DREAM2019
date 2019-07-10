@@ -102,3 +102,20 @@ automl_config = AutoMLConfig(task = 'classification',
 Submit to AutoML
 """
 local_run = experiment.submit(automl_config, show_output = True)
+
+#%%
+"""
+Retrieve Best Model
+"""
+best_run, fitted_model = local_run.get_output()
+print(best_run)
+print(fitted_model)
+
+#%%
+"""
+Predict Test Data
+"""
+X_test = pickle.load(open("../data/sc2_X_test.pkl", "rb"))
+
+y_predict = fitted_model.predict(X_test.values)
+print(y_predict)
