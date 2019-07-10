@@ -16,7 +16,10 @@ import numpy as np
 import pandas as pd
 from sklearn import datasets
 
-## pip install azureml-sdk
+## pip install -U azureml-sdk --user
+## pip install -U azureml.core --user
+## pip install -U azureml.train.automl --user
+
 import azureml.core
 from azureml.core.experiment import Experiment
 from azureml.core.workspace import Workspace
