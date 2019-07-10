@@ -3,7 +3,73 @@
 # MAGIC # Malaria DREAM Challenge 2019
 # MAGIC ## Subchallenge 2
 # MAGIC ------------------------------
-# MAGIC ### AutoML - Azure Machine Learning Service
+# MAGIC 
+# MAGIC ## Transform Data into Arrays
+
+# COMMAND ----------
+
+# DBTITLE 1,Data Prep - Load Data into Spark
+from pyspark.ml import PipelineModel
+from pyspark.sql.functions import col
+
+data = spark.read.format("csv") \
+               .options(header = True, inferSchema = True) \
+               .load("/mnt/malaria/SubCh2_TrainingData.csv")
+
+pipeline = PipelineModel.load("/mnt/malaria/sc2/pipeline/")
+
+data = pipeline.transform(data).select(col("label"), col("features"))
+# train, test = data.randomSplit([0.75, 0.25], 1337)
+
+# test = spark.read.format("csv") \
+#                .options(header = True, inferSchema = True) \
+#                .load("/mnt/malaria/SubCh2_TestData.csv")
+# test = pipeline.transform(test).select(col("label"), col("features"))
+
+display(data)
+
+# COMMAND ----------
+
+# DBTITLE 1,Data Prep - Convert Spark DataFrame to Numpy Array
+import numpy as np
+# ## Training Data
+# pdtrain = train.toPandas()
+# trainseries = pdtrain['features'].apply(lambda x : np.array(x.toArray())).as_matrix().reshape(-1,1)
+# X_train = np.apply_along_axis(lambda x : x[0], 1, trainseries)
+# y_train = pdtrain['label'].values.reshape(-1,1).ravel()
+
+# ## Test Data
+# pdtest = test.toPandas()
+# testseries = pdtest['features'].apply(lambda x : np.array(x.toArray())).as_matrix().reshape(-1,1)
+# X_test = np.apply_along_axis(lambda x : x[0], 1, testseries)
+# y_test = pdtest['label'].values.reshape(-1,1).ravel()
+
+## Whole Training Data
+pdtrain = data.toPandas()
+trainseries = pdtrain['features'].apply(lambda x : np.array(x.toArray())).as_matrix().reshape(-1,1)
+X_train = np.apply_along_axis(lambda x : x[0], 1, trainseries)
+y_train = pdtrain['label'].values.reshape(-1,1).ravel()
+
+print(y_train)
+
+# COMMAND ----------
+
+# DBTITLE 1,Save Arrays to Blob as Pickles
+import pickle
+pickle.dump(X_train, open( "sc2_X_train.pkl", "wb" ) )
+dbutils.fs.cp("file:/databricks/driver/sc2_X_train.pkl", "/mnt/malaria/sc2/arraydata")
+
+pickle.dump(y_train, open( "sc2_y_train.pkl", "wb" ) )
+dbutils.fs.cp("file:/databricks/driver/sc2_y_train.pkl", "/mnt/malaria/sc2/arraydata")
+
+
+display(dbutils.fs.ls("/mnt/malaria/sc2/arraydata"))
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC --------------------
+# MAGIC ## Azure Machine Learning Service - AutoML
 
 # COMMAND ----------
 
@@ -67,45 +133,6 @@ output['Experiment Name'] = experiment.name
 pd.set_option('display.max_colwidth', -1)
 outputDf = pd.DataFrame(data = output, index = [''])
 outputDf.T
-
-# COMMAND ----------
-
-# DBTITLE 1,Data Prep - Load Data into Spark
-from pyspark.ml import PipelineModel
-from pyspark.sql.functions import col
-
-data = spark.read.format("csv") \
-               .options(header = True, inferSchema = True) \
-               .load("/mnt/malaria/SubCh2_TrainingData.csv")
-
-pipeline = PipelineModel.load("/mnt/malaria/sc2/pipeline/")
-
-data = pipeline.transform(data).select(col("label"), col("features"))
-train, test = data.randomSplit([0.75, 0.25], 1337)
-
-# test = spark.read.format("csv") \
-#                .options(header = True, inferSchema = True) \
-#                .load("/mnt/malaria/SubCh2_TestData.csv")
-# test = pipeline.transform(test).select(col("label"), col("features"))
-
-display(train)
-
-# COMMAND ----------
-
-# DBTITLE 1,Data Prep - Convert Spark DataFrame to Numpy Array
-## Training Data
-pdtrain = train.toPandas()
-trainseries = pdtrain['features'].apply(lambda x : np.array(x.toArray())).as_matrix().reshape(-1,1)
-X_train = np.apply_along_axis(lambda x : x[0], 1, trainseries)
-y_train = pdtrain['label'].values.reshape(-1,1).ravel()
-
-## Test Data
-pdtest = test.toPandas()
-testseries = pdtest['features'].apply(lambda x : np.array(x.toArray())).as_matrix().reshape(-1,1)
-X_test = np.apply_along_axis(lambda x : x[0], 1, testseries)
-y_test = pdtest['label'].values.reshape(-1,1).ravel()
-
-print(y_test)
 
 # COMMAND ----------
 
