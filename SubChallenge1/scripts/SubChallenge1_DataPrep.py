@@ -269,15 +269,15 @@ stages = []
 for categoricalColumn in categoricalColumns:
   print(categoricalColumn)
   # Category Indexing with StringIndexer
-  stringIndexer = StringIndexer(inputCol=categoricalColumn, outputCol = categoricalColumn+"Index").setHandleInvalid("skip")
+  stringIndexer = StringIndexer(inputCol=categoricalColumn, outputCol = categoricalColumn+"Index").setHandleInvalid("keep")
   # Use OneHotEncoder to convert categorical variables into binary SparseVectors
   encoder = OneHotEncoder(inputCol=categoricalColumn+"Index", outputCol=categoricalColumn+"classVec")
   # Add stages.  These are not run here, but will run all at once later on.
   stages += [stringIndexer, encoder]
 
 # Convert label into label indices using the StringIndexer
-label_stringIndexer = StringIndexer(inputCol = label, outputCol = "label").setHandleInvalid("skip")
-stages += [label_stringIndexer]
+#label_stringIndexer = StringIndexer(inputCol = label, outputCol = "label").setHandleInvalid("skip")
+#stages += [label_stringIndexer]
 
 # Transform all features into a vector using VectorAssembler
 assemblerInputs = categoricalColumnsclassVec + numericalColumns
@@ -297,7 +297,4 @@ display(dbutils.fs.ls("/mnt/malaria/sc1/pipeline"))
 
 # COMMAND ----------
 
-display(dataset.select("Isolate", "label","features"))
-
-# COMMAND ----------
-
+# display(dataset.select("Isolate", "label","features"))

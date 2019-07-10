@@ -56,7 +56,7 @@ display(dataset)
 
 # COMMAND ----------
 
-display(dataset.describe())
+# display(dataset.describe())
 
 # COMMAND ----------
 
@@ -5041,7 +5041,7 @@ for categoricalColumn in categoricalColumns:
   stages += [stringIndexer, encoder]
 
 # Convert label into label indices using the StringIndexer
-label_stringIndexer = StringIndexer(inputCol = label, outputCol = "label").setHandleInvalid("skip")
+label_stringIndexer = StringIndexer(inputCol = label, outputCol = "label").setHandleInvalid("keep")
 stages += [label_stringIndexer]
 
 # Transform all features into a vector using VectorAssembler
