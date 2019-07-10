@@ -3,50 +3,7 @@
 # MAGIC # Malaria DREAM Challenge 2019
 # MAGIC ## Subchallenge 2 - Scorer
 # MAGIC ------------------------------
-# MAGIC ## Transform Data into Arrays
-
-# COMMAND ----------
-
-# DBTITLE 1,Data Prep - Load Data into Spark
-from pyspark.ml import PipelineModel
-from pyspark.sql.functions import col
-
-data = spark.read.format("csv") \
-               .options(header = True, inferSchema = True) \
-               .load("/mnt/malaria/SubCh2_TestData.csv") \
-               .withColumnRenamed("Asexual_Stage", "Asexual_stage__hpi_")
-
-pipeline = PipelineModel.load("/mnt/malaria/sc2/pipeline/")
-
-data = pipeline.transform(data).select(col("label"), col("features"))
-
-display(data)
-
-# COMMAND ----------
-
-# DBTITLE 1,Data Prep - Convert Spark DataFrame to Numpy Array
-import numpy as np
-## Whole Test Data
-pdtest = data.toPandas()
-testseries = pdtest['features'].apply(lambda x : np.array(x.toArray())).as_matrix().reshape(-1,1)
-X_test = np.apply_along_axis(lambda x : x[0], 1, testseries)
-# y_test = pdtest['label'].values.reshape(-1,1).ravel()
-
-print(X_test)
-
-# COMMAND ----------
-
-import pickle
-pickle.dump(X_test, open( "sc2_X_test.pkl", "wb" ) )
-dbutils.fs.cp("file:/databricks/driver/sc2_X_test.pkl", "/mnt/malaria/sc2/arraydata")
-
-display(dbutils.fs.ls("/mnt/malaria/sc2/arraydata"))
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC --------------------
-# MAGIC ## Azure Machine Learning Service - AutoML
+# MAGIC ### AutoML - Azure Machine Learning Service
 
 # COMMAND ----------
 
@@ -113,12 +70,82 @@ outputDf.T
 
 # COMMAND ----------
 
-# DBTITLE 1,Get Best Model
-best_run, fitted_model = local_run.get_output()
-print(best_run)
-print(fitted_model)
+# DBTITLE 1,Data Prep - Load Data into Spark
+from pyspark.ml import PipelineModel
+from pyspark.sql.functions import col
+
+data = spark.read.format("csv") \
+               .options(header = True, inferSchema = True) \
+               .load("/mnt/malaria/SubCh2_TrainingData.csv")
+
+pipeline = PipelineModel.load("/mnt/malaria/sc2/pipeline/")
+
+data = pipeline.transform(data).select(col("label"), col("features"))
+train, test = data.randomSplit([0.75, 0.25], 1337)
+
+# test = spark.read.format("csv") \
+#                .options(header = True, inferSchema = True) \
+#                .load("/mnt/malaria/SubCh2_TestData.csv")
+# test = pipeline.transform(test).select(col("label"), col("features"))
+
+display(train)
 
 # COMMAND ----------
 
-# DBTITLE 1,Predict Test Data
-y_hat = fitted_model.predict(X_test.values)
+# DBTITLE 1,Data Prep - Convert Spark DataFrame to Numpy Array
+## Training Data
+pdtrain = train.toPandas()
+trainseries = pdtrain['features'].apply(lambda x : np.array(x.toArray())).as_matrix().reshape(-1,1)
+X_train = np.apply_along_axis(lambda x : x[0], 1, trainseries)
+y_train = pdtrain['label'].values.reshape(-1,1).ravel()
+
+## Test Data
+pdtest = test.toPandas()
+testseries = pdtest['features'].apply(lambda x : np.array(x.toArray())).as_matrix().reshape(-1,1)
+X_test = np.apply_along_axis(lambda x : x[0], 1, testseries)
+y_test = pdtest['label'].values.reshape(-1,1).ravel()
+
+print(y_test)
+
+# COMMAND ----------
+
+# DBTITLE 1,Configure AutoML
+automl_config = AutoMLConfig(task = 'classification',
+                             name = experiment_name,
+                             debug_log = 'automl_errors.log',
+                             primary_metric = 'AUC_weighted',
+                             iteration_timeout_minutes = 20,
+                             iterations = 100,
+                             preprocess = True,
+                             n_cross_validations = 5,
+                             verbosity = logging.INFO,
+                             X = X_train, 
+                             y = y_train,
+                             path = project_folder)
+
+# primary_metric = 'normalized_root_mean_squared_error',
+
+# COMMAND ----------
+
+# DBTITLE 1,Submit to AutoML
+local_run = experiment.submit(automl_config, show_output = True)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ----------------------
+# MAGIC ### Score Submission Data
+
+# COMMAND ----------
+
+subdata = spark.read.format("csv") \
+               .options(header = True, inferSchema = True) \
+               .load("/mnt/malaria/SubCh1_TestData.csv")
+
+pipeline = PipelineModel.load("/mnt/malaria/sc2/pipeline/")
+
+subdata = pipeline.transform(subdata).select(col("label"), col("features"))
+
+output = lrcvModel.bestModel.transform(subdata)
+
+display(output)
