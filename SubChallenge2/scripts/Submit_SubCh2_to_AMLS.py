@@ -124,3 +124,6 @@ X_test = pickle.load(open("../data/sc2_X_test.pkl", "rb"))
 
 y_predict = fitted_model.predict(X_test)
 print(y_predict)
+
+y_prob = fitted_model.predict_proba(X_test)
+print(y_prob)
