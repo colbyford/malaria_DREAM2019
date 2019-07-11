@@ -113,7 +113,7 @@ Retrieve Best Model
 # print(best_run)
 # print(fitted_model)
 
-fitted_model = pickle.load(open("../model/sc1_amls_model_7-10-19/model.pkl","rb"))
+fitted_model = pickle.load(open("../model/amls_model_7-10-19/sc1_model.pkl","rb"))
 
 #%%
 """
