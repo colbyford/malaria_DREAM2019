@@ -113,7 +113,7 @@ Retrieve Best Model
 # print(best_run)
 # print(fitted_model)
 
-fitted_model = pickle.load(open("../model/amls_model_7-10-19/model.pkl","rb"))
+fitted_model = pickle.load(open("../model/sc1_amls_model_7-10-19/model.pkl","rb"))
 
 #%%
 """
@@ -121,5 +121,5 @@ Predict Test Data
 """
 X_test = pickle.load(open("../data/sc1_X_test.pkl", "rb"))
 
-y_predict = fitted_model.predict(X_test.values)
+y_predict = fitted_model.predict(X_test)
 print(y_predict)
