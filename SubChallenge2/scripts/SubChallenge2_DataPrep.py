@@ -66,7 +66,8 @@ label = "ClearanceRate"
 
 # Note: "Country" Can't be used as the test data only contains "Thailand_Myanmar_Border", which isn't in the training data.
 # Note: "Kmeans_Grp" Can't be used as this is not included in the testing data.
-categoricalColumns = ["Asexual_stage__hpi_"]
+# Note: "Asexual_stage__hpi_" Can't be used as the testing data has different stages.
+categoricalColumns = []
 
 numericalColumns = ["PF3D7_0100100",
                     "PF3D7_0100200",
