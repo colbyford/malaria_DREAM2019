@@ -12,9 +12,7 @@ The Malaria DREAM Challenge is open to anyone interested in contributing to the 
 
 __Topic:__ Predict the Artemisinin (Art) IC50 (drug concentration at which 50% of parasites die) of malaria isolates using in vitro transcriptomics data.
 
-
-
-### July 11, 2019 Submission:
+### July 11, 2019 Submission:
 
 **Data Preprocessing:** Casted data to roll up to the Isolate grain. Instead of having multiple rows for an isolate, each with various Timepoints, Treatments, and BioReps, this was pivoted such that each row represents a single isolate. So, each numerical column turns into 8 columns, one version for each slice of 2 Timepoints, 2 Treatments, and 2 BioReps. This resulted in a dataset with 44,346 columns.
 
@@ -25,11 +23,11 @@ __Topic:__ Predict the Artemisinin (Art) IC50 (drug concentration at which 50% o
 - Normalized Mean Absolute Error: 0.1479
 - Normalized Root Mean Squared Error: 0.1871
 
+**Rank:** 2 out of 17
+
 ## Subchallenge 2
 
 __Topic:__ Utilizing a previously published in vivo transcription data set from [Mok et al,. Science 2015](https://www.ncbi.nlm.nih.gov/pubmed/25502316), predict the resistance status of malaria isolates utilizing in vitro transcription data.
-
-
 
 ### July 11, 2019 Submission:
 
@@ -42,3 +40,5 @@ __Topic:__ Utilizing a previously published in vivo transcription data set from 
 - Weighted AUC: 0.8693
 - Weighted F1 Score: 0.7930
 - Weighted Accuracy: 0.8631
+
+**Rank:** 2 out of 17
