@@ -89,12 +89,12 @@ Configure AutoML
 automl_config = AutoMLConfig(task = 'regression',
                              name = experiment_name,
                              debug_log = 'automl_errors.log',
-                             primary_metric = 'normalized_root_mean_squared_error',
+                             primary_metric = 'spearman_correlation', #'normalized_root_mean_squared_error'
                              iteration_timeout_minutes = 20,
                              iterations = 100,
                              max_cores_per_iteration = 4,
                              preprocess = True,
-                             n_cross_validations = 5,
+                             n_cross_validations = 10,
                              verbosity = logging.INFO,
                              X = X_train, 
                              y = y_train,
@@ -114,7 +114,7 @@ Retrieve Best Model
 # print(best_run)
 # print(fitted_model)
 
-fitted_model = pickle.load(open("../model/amls_model_7-11-19/sc1_model.pkl","rb"))
+fitted_model = pickle.load(open("../model/amls_model_7-18-19/sc1_model.pkl","rb"))
 
 #%%
 """
