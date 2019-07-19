@@ -20,6 +20,8 @@ from sklearn import datasets
 ## pip install -U azureml.core --user
 ## pip install -U azureml.train.automl --user
 
+## On macOS, you may have to install `brew install libomp` and then `pip install lightgbm`
+
 import azureml.core
 from azureml.core.experiment import Experiment
 from azureml.core.workspace import Workspace
@@ -114,7 +116,7 @@ Retrieve Best Model
 # print(best_run)
 # print(fitted_model)
 
-fitted_model = pickle.load(open("../model/amls_model_7-11-19/sc2_model.pkl","rb"))
+fitted_model = pickle.load(open("../model/amls_model_7-18-19/sc2_model.pkl","rb"))
 
 #%%
 """
