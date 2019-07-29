@@ -26,7 +26,7 @@ __Topic:__ Predict the Artemisinin (Art) IC50 (drug concentration at which 50% o
 - Normalized Mean Absolute Error: 0.1444
 - Normalized Root Mean Squared Error: 0.1943
 
-
+**Rank:** 4 out of 19
 
 ### July 11, 2019 Submission:
 
@@ -56,6 +56,8 @@ __Topic:__ Utilizing a previously published in vivo transcription data set from 
 - Weighted AUC: 0.8671
 - Weighted F1 Score: 0.8024
 - Weighted Accuracy: 0.8543
+
+**Rank:** 5 out of 15
 
 ### July 11, 2019 Submission:
 
