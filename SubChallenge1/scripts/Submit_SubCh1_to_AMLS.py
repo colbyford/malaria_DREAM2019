@@ -11,10 +11,8 @@ Load in Libraries
 import json
 import logging
 
-from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
-from sklearn import datasets
 
 ## pip install -U azureml-sdk --user
 ## pip install -U azureml.core --user
@@ -44,8 +42,8 @@ from azureml.core import Workspace
 
 ws = Workspace.create(name = workspace_name,
                       subscription_id = subscription_id,
-                      resource_group = resource_group, 
-                      location = workspace_region,                      
+                      resource_group = resource_group,
+                      location = workspace_region,
                       exist_ok=True)
 ws.get_details()
 
@@ -89,12 +87,12 @@ Configure AutoML
 automl_config = AutoMLConfig(task = 'regression',
                              name = experiment_name,
                              debug_log = 'automl_errors.log',
-                             primary_metric = 'spearman_correlation', #'normalized_root_mean_squared_error'
+                             primary_metric = 'normalized_root_mean_squared_error', #'spearman_correlation'
                              iteration_timeout_minutes = 20,
-                             iterations = 100,
-                             max_cores_per_iteration = 4,
+                             iterations = 500,
+                             max_cores_per_iteration = 7,
                              preprocess = True,
-                             n_cross_validations = 10,
+                             n_cross_validations = 20,
                              verbosity = logging.INFO,
                              X = X_train, 
                              y = y_train,
@@ -114,7 +112,7 @@ Retrieve Best Model
 # print(best_run)
 # print(fitted_model)
 
-fitted_model = pickle.load(open("../model/amls_model_7-18-19/sc1_model.pkl","rb"))
+fitted_model = pickle.load(open("../model/amls_model_7-31-19/sc1_model.pkl","rb"))
 
 #%%
 """
