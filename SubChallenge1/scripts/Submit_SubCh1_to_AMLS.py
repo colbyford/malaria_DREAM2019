@@ -18,6 +18,10 @@ import pandas as pd
 ## pip install -U azureml.core --user
 ## pip install -U azureml.train.automl --user
 
+## On macOS, you may have to install `brew install libomp` and then `pip install lightgbm` and run the following:
+## import os
+## os.environ['KMP_DUPLICATE_LIB_OK']='True'
+
 import azureml.core
 from azureml.core.experiment import Experiment
 from azureml.core.workspace import Workspace
@@ -111,6 +115,7 @@ Retrieve Best Model
 # best_run, fitted_model = local_run.get_output()
 # print(best_run)
 # print(fitted_model)
+import pickle
 
 fitted_model = pickle.load(open("../model/amls_model_7-31-19/sc1_model.pkl","rb"))
 

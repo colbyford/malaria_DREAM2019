@@ -60,13 +60,13 @@ __Topic:__ Utilizing a previously published in vivo transcription data set from 
 
 **Data Preprocessing:** None, except removal of certain attributes. (`Country` - test data only contains "Thailand_Myanmar_Border", which isn't in the training data, `Kmeans_Grp` - not included in the testing data, and `Asexual_stage__hpi_` - testing data has different stages.)
 
-**Model:** Voting Ensemble model (using soft voting) of 4?? previous models (including models trained using Logistic Regression, SVM, Gradient Boosting, SGD, Naïve Bayes, ~~KNN~~, Random Forests, and Extreme Random Trees), each having been trained on pre-processed data using various steps (including imputation, normalization, and scaling).
+**Model:** Voting Ensemble model (using soft voting) of 98 previous models (including models trained using Logistic Regression, SVM, Gradient Boosting, SGD, Naïve Bayes, ~~KNN~~, Random Forests, and Extreme Random Trees), each having been trained on pre-processed data using various steps (including imputation, normalization, and scaling).
 
 **Metrics:**
 
-- Weighted AUC: ?
-- Weighted F1 Score: ?
-- Weighted Accuracy: ?
+- Weighted AUC: 0.8705
+- Weighted F1 Score: 0.8019
+- Weighted Accuracy: 0.8585
 
 **Rank:** ?? out of ??
 
