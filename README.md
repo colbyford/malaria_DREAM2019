@@ -1,4 +1,5 @@
 # Malaria DREAM Challenge 2019
+<h1 align = "center">🦟 👨‍🔬 🧬</h1>
 
 <p align = "right">Submission by: Colby T. Ford, Ph.D.</p>
 
