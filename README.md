@@ -6,11 +6,33 @@
 
 [Challenge Link](https://www.synapse.org/#!Synapse:syn16924919/wiki/)
 
-The Malaria DREAM Challenge is open to anyone interested in contributing to the development of computational models that address important problems in advancing the fight against malaria. The overall goal of the first Malaria DREAM Challenge is to predict Artemisinin (Art) drug resistance level of a test set of malaria parasites using their in vitro transcription data and a training set consisting of published in vivo and unpublished in vitro transcriptomes. The in vivo dataset consists of ~1000 transcription samples from various geographic locations covering a wide range of life cycles and resistance levels, with other accompanying data such as patient age, geographic location, Art combination therapy used, etc [Mok et al (2015) Science]. The in vitro transcription dataset consists of 55 isolates, with transcription collected at two timepoints (6 and 24 hours post-invasion), in the absence or presence of an Art perturbation, for two biological replicates using a custom microarray at the Ferdig lab. Using these transcription datasets, participants will be asked to predict three different resistance states of a subset of the 55 in vitro isolate samples; 
+The Malaria DREAM Challenge is open to anyone interested in contributing to the development of computational models that address important problems in advancing the fight against malaria. The overall goal of the first Malaria DREAM Challenge is to predict Artemisinin (Art) drug resistance level of a test set of malaria parasites using their in vitro transcription data and a training set consisting of published in vivo and unpublished in vitro transcriptomes. The in vivo dataset consists of ~1000 transcription samples from various geographic locations covering a wide range of life cycles and resistance levels, with other accompanying data such as patient age, geographic location, Art combination therapy used, etc [Mok et al., (2015) Science]. The in vitro transcription dataset consists of 55 isolates, with transcription collected at two timepoints (6 and 24 hours post-invasion), in the absence or presence of an Art perturbation, for two biological replicates using a custom microarray at the Ferdig lab. Using these transcription datasets, participants will be asked to predict three different resistance states of a subset of the 55 in vitro isolate samples; 
 
 ## Subchallenge 1
 
 __Topic:__ Predict the Artemisinin (Art) IC50 (drug concentration at which 50% of parasites die) of malaria isolates using in vitro transcriptomics data.
+
+__Data:__ Transcription profiles of all 55 malaria parasite isolates along with the IC50 (drug concentration at which 50% of parasites die) values.
+ - Training set: 30 malaria parasite isolates
+ - Test Set: 25 malaria parasite isolates.
+
+The transcription data will consist of roughly 5000 genes from the malaria parasite, _Plasmodium falciparum_. For each malaria parasite isolate, transcription data was collected at two time points (6 hours post invasion (hpi) and 24hpi), perturbed and un-perturbed with dihydroartemisinin (the metabolically active form of artemisinin), with a biological replicate each, for a grand total of at least eight data points per parasite isolate.
+
+| (Adapted with permission from Turnbull et al., (2017) PLoS One) | Training Set |        Test Set       |
+|:---------------------------------------------------------------:|:------------:|:---------------------:|
+|  Array                                                          | Bozdech      | Agilent HD Exon Array |
+| Platform                                                        | Printed      | Agilent               |
+| Plexes                                                          | 1            | 8                     |
+| Unique Probes                                                   | 10159        | 62976                 |
+| Range of Probes per Exon                                        | N/A          | 1-52                  |
+| Average Probes per Gene                                         | 2            | 12                    |
+| Genes Represented                                               | 5363         | 5440                  |
+| Transcript Isoform Profiling                                    | No           | Yes                   |
+| ncRNAs                                                          | No           | Yes                   |
+| Channel Detection Method                                        | Two Color    | Single Color          |
+| Scanner                                                         | PowerScanner | Agilent               |
+| Data Extraction                                                 | GenePix Pro  | Agilent               |
+
 
 ### July 31, 2019 Submission:
 
@@ -54,7 +76,20 @@ __Topic:__ Predict the Artemisinin (Art) IC50 (drug concentration at which 50% o
 
 ## Subchallenge 2
 
-__Topic:__ Utilizing a previously published in vivo transcription data set from [Mok et al,. Science 2015](https://www.ncbi.nlm.nih.gov/pubmed/25502316), predict the resistance status of malaria isolates utilizing in vitro transcription data.
+__Topic:__ Utilizing a previously published _in vivo_ transcription data set from [Mok et al,. Science 2015](https://www.ncbi.nlm.nih.gov/pubmed/25502316), predict the resistance status of malaria isolates utilizing _in vitro_ transcription data.
+
+__Data:__ _in vivo_ transcription data set ([Mok et al,. Science 2015](https://www.ncbi.nlm.nih.gov/pubmed/25502316)) to predict the parasite clearance rate of malaria parasite isolates based on in vitro transcriptional profiles.
+
+|                               |                           Training Set                           |                                          Test Set                                          |
+|:-----------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------------------------------:|
+| Dataset                       | Published from                                                   | Unpublished                                                                                |
+| Number of Isolates            | 1043                                                             | 32                                                                                         |
+| Isolate Collection Site       | Southeast Asia                                                   | Thai-Myanmar Border                                                                        |
+| Isolate Collection Years      | 2012-2014                                                        | 2007-2012                                                                                  |
+| Sample Type                   | _in vivo_                                                        | _in vitro_                                                                                 |
+| Synchronized?                 | Not Synchronized                                                 | Synchronized                                                                               |
+| Number of Samples per Isolate | 1                                                                | 8                                                                                          |
+| Additional Attributes         |  ~18 Hours Post Invasion (hpi), Non-perturbed, No replicates | Two time points (6 hpi and 24 hpi), Perturbed and Non-perturbed, Biological Replicate |
 
 ### July 31, 2019 Submission:
 
