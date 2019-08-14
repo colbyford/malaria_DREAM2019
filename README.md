@@ -1,10 +1,13 @@
 # Ensemble Machine Learning Modeling for the Prediction of Artemisinin Resistance in Malaria
 <p align = "right">By: Colby T. Ford, Ph.D., Tamar Carter, Ph.D., and Daniel Janies, Ph.D.</p>
 
+<details>
+<summary><strong><em>Table of Contents</em></strong></summary>
 * [Malaria DREAM Challenge 2019](#malaria-dream-challenge-2019)
   - [About the Challenge](#about-the-challenge)
   - [Subchallenge 1](#subchallenge-1)
   - [Subchallenge 2](#subchallenge-2)
+</details>
 
 # Malaria DREAM Challenge 2019
 <h1 align = "center">🦟 👨‍🔬 🧬</h1>
