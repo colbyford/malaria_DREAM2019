@@ -2,6 +2,8 @@
 
 **Model Date:** 7/31/2019
 
+**Parent Run:** `AutoML_a87fe401-5f7c-414e-9173-3f23bd5b65a8`
+
 **Run Id:** `AutoML_a87fe401-5f7c-414e-9173-3f23bd5b65a8_498`
 
 **Package:** Azure Machine Learning Service - AutoML
