@@ -63,6 +63,20 @@ The transcription data will consist of roughly 5000 genes from the malaria paras
 - [Vectorized Training Data (Independent Variables)](https://github.com/colbyford/malaria_DREAM2019/blob/master/SubChallenge1/data/sc1_X_train.pkl)
 - [Vectorized Training Data (Dependent Variable)](https://github.com/colbyford/malaria_DREAM2019/blob/master/SubChallenge1/data/sc1_y_train.pkl)
 
+**Training Parameters:** The following are the training parameters for the Azure Machine Learning Service:
+
+|          Parameter          |                Value               |
+|:---------------------------:|:----------------------------------:|
+| Task                        | Regression                         |
+| Number of Iterations        | 500                                |
+| Iteration Timeout (minutes) | 20                                 |
+| Max Cores per Iteration     | 7                                  |
+| Primary Metric              | Normalized Root Mean Squared Error |
+| Preprocess Data?            | True                               |
+| k-Fold Cross-Validations    | 20 folds                           |
+
+- [Submission Script for SubChallenge 1 Data to AMLS](https://github.com/colbyford/malaria_DREAM2019/blob/master/SubChallenge1/scripts/Submit_SubCh1_to_AMLS.py)
+
 **Model:** Voting Ensemble model (using soft voting) of 498 previous models (including models trained using Extreme Random Trees, Random Forest, Decision Tree, Elastic Net, and Lasso Least Angle Regression), each having been trained on pre-processed data using various steps (including imputation, normalization, and scaling).
 
 - [Ensemble Model Pickle File](https://github.com/colbyford/malaria_DREAM2019/blob/master/SubChallenge1/model/amls_model_7-31-19/sc1_model.pkl)
@@ -621,6 +635,20 @@ __Data:__ _in vivo_ transcription data set ([Mok et al,. Science 2015](https://w
 - [Data Shaping Script (PySpark on Apache Spark)](https://github.com/colbyford/malaria_DREAM2019/blob/master/SubChallenge2/scripts/SubChallenge2_DataPrep.py)
 - [Vectorized Training Data (Independent Variables)](https://github.com/colbyford/malaria_DREAM2019/blob/master/SubChallenge2/data/sc2_X_train.pkl)
 - [Vectorized Training Data (Dependent Variable)](https://github.com/colbyford/malaria_DREAM2019/blob/master/SubChallenge2/data/sc2_y_train.pkl)
+
+**Training Parameters:** The following are the training parameters for the Azure Machine Learning Service:
+
+|          Parameter          |                Value               |
+|:---------------------------:|:----------------------------------:|
+| Task                        | Classification                     |
+| Number of Iterations        | 100                                |
+| Iteration Timeout (minutes) | 20                                 |
+| Max Cores per Iteration     | 14                                 |
+| Primary Metric              | Weighted AUC					   |
+| Preprocess Data?            | True                               |
+| k-Fold Cross-Validations    | 10 folds                           |
+
+- [Submission Script for SubChallenge 2 Data to AMLS](https://github.com/colbyford/malaria_DREAM2019/blob/master/SubChallenge2/scripts/Submit_SubCh2_to_AMLS.py)
 
 **Model:** Voting Ensemble model (using soft voting) of 98 previous models (including models trained using Logistic Regression, SVM, Gradient Boosting, SGD, Naïve Bayes, ~~KNN~~, Random Forests, and Extreme Random Trees), each having been trained on pre-processed data using various steps (including imputation, normalization, and scaling).
 
