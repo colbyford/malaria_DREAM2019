@@ -795,3 +795,12 @@ __Data:__ _in vivo_ transcription data set ([Mok et al,. Science 2015](https://w
 | 93        | StandardScalerWrapper | RandomForest       | 0.740452619  |
 | 48        | RobustScaler          | KNN                | 0.738236639  |
 | 10        | MinMaxScaler          | RandomForest       | 0.738015441  |
+
+
+-------------------------------------
+## Discussion
+By using distributed processing of the data preparation, we can successfully shape and manage a malaria dataset of over 40,000 genetic attributes. This is complete with scalable vectorization of the training data, which allowed for many machine learning models to be generated. By tracking the individual performance results of each machine learning model, we can determine which model is most useful. In addition, ensemble modeling of the various singular models proved effective for both subchallenges in this work.
+
+## References
+1. NIEHS-NCATS-UNC DREAM Toxicogenetics Challenge ([syn1761567](https://www.synapse.org/#!Synapse:syn1761567))
+2. Caruana, R., Niculescu-Mizil, A., Crew, G. & Ksikes, A. Ensemble selection from libraries of models. _In Proceedings of the Twenty-first International Conference on Machine Learning_, ICML ’04, 18–, DOI: 10.1145/1015330.1015432 (ACM,New York, NY, USA, 2004).
