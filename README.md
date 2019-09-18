@@ -6,6 +6,7 @@
   
 * [Malaria DREAM Challenge 2019](#malaria-dream-challenge-2019)
   - [About the Challenge](#about-the-challenge)
+  - [Overall Modeling Approach](#overall-modeling-approach)
   - [Subchallenge 1](#subchallenge-1)
   - [Subchallenge 2](#subchallenge-2)
 
