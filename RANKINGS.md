@@ -19,7 +19,7 @@
 - Normalized Mean Absolute Error: 0.1097
 - Normalized Root Mean Squared Error: 0.1228
 
-**Rank:** ? out of ??
+**Rank:** 7 out of 18
 
 ### July 18, 2019 Submission:
 
@@ -62,7 +62,7 @@
 - Weighted F1 Score: 0.8019
 - Weighted Accuracy: 0.8585
 
-**Rank:** ?? out of ??
+**Rank:** 3 out of 17
 
 ### July 18, 2019 Submission:
 
