@@ -620,7 +620,7 @@ __Data:__ _in vivo_ transcription data set ([Mok et al,. Science 2015](https://w
 
 |                               |                           Training Set                           |                                          Test Set                                          |
 |:-----------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------------------------------:|
-| Dataset                       | Published from                                                   | Unpublished                                                                                |
+| Dataset                       | Published from [Mok et al,. Science 2015](https://www.ncbi.nlm.nih.gov/pubmed/25502316)                                                   | Unpublished                                                                                |
 | Number of Isolates            | 1043                                                             | 32                                                                                         |
 | Isolate Collection Site       | Southeast Asia                                                   | Thai-Myanmar Border                                                                        |
 | Isolate Collection Years      | 2012-2014                                                        | 2007-2012                                                                                  |
