@@ -39,7 +39,7 @@ __Data:__ Transcription profiles of all 55 malaria parasite isolates along with 
  - Training set: 30 malaria parasite isolates
  - Test Set: 25 malaria parasite isolates.
 
-The transcription data will consist of roughly 5000 genes from the malaria parasite, _Plasmodium falciparum_. For each malaria parasite isolate, transcription data was collected at two time points (6 hours post invasion (hpi) and 24hpi), perturbed and un-perturbed with dihydroartemisinin (the metabolically active form of artemisinin), with a biological replicate each, for a grand total of at least eight data points per parasite isolate.
+The transcription data consists of 5540 genes from the malaria parasite, _Plasmodium falciparum_. For each malaria parasite isolate, transcription data was collected at two time points (6 hours post invasion (hpi) and 24hpi), perturbed and un-perturbed with dihydroartemisinin (the metabolically active form of artemisinin), with a biological replicate each, for a grand total of at least eight data points per parasite isolate.
 
 | (Adapted with permission from Turnbull et al., (2017) PLoS One) | Training Set |        Test Set       |
 |:---------------------------------------------------------------:|:------------:|:---------------------:|
