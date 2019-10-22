@@ -98,6 +98,7 @@ automl_config = AutoMLConfig(task = 'classification',
                              preprocess = True,
                              n_cross_validations = 10,
                              verbosity = logging.INFO,
+                             model_explainability=True,
                              X = X_train, 
                              y = y_train,
                              path = project_folder)
@@ -131,3 +132,18 @@ print(y_predict)
 
 y_prob = fitted_model.predict_proba(X_test)
 print(y_prob)
+
+#%%
+"""
+Model Explanability
+"""
+from azureml.explain.model._internal.explanation_client import ExplanationClient
+
+client = ExplanationClient.from_run_id(ws,
+                                       experiment_name = "automl-malariadream-sc2",
+                                       run_id = "AutoML_43d7399a-3f89-4728-b884-51be811a8e1a_98")
+
+#client = ExplanationClient.from_run(best_run)
+engineered_explanations = client.download_model_explanation(raw=False)
+print(engineered_explanations.get_feature_importance_dict())
+

@@ -98,6 +98,7 @@ automl_config = AutoMLConfig(task = 'regression',
                              preprocess = True,
                              n_cross_validations = 20,
                              verbosity = logging.INFO,
+                             model_explainability=True,
                              X = X_train, 
                              y = y_train,
                              path = project_folder)
@@ -127,3 +128,18 @@ X_test = pickle.load(open("../data/sc1_X_test.pkl", "rb"))
 
 y_predict = fitted_model.predict(X_test)
 print(y_predict)
+
+#%%
+"""
+Model Explanability
+"""
+from azureml.explain.model._internal.explanation_client import ExplanationClient
+
+client = ExplanationClient.from_run_id(ws,
+                                       experiment_name = "automl-malariadream-sc1",
+                                       run_id = "AutoML_a87fe401-5f7c-414e-9173-3f23bd5b65a8_498")
+
+#client = ExplanationClient.from_run(best_run)
+engineered_explanations = client.download_model_explanation(raw=False)
+print(engineered_explanations.get_feature_importance_dict())
+
