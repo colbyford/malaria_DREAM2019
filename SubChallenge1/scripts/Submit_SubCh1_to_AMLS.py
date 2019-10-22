@@ -111,14 +111,21 @@ local_run = experiment.submit(automl_config, show_output = True)
 
 #%%
 """
-Retrieve Best Model
+Retrieve Best Model and Save Locally
 """
-# best_run, fitted_model = local_run.get_output()
+best_run, fitted_model = local_run.get_output()
 # print(best_run)
 # print(fitted_model)
+
+pickle.dump(fitted_model, open( "../model/amls_model_10-31-19/sc1_model.pkl", "wb" ) )
+
+#%%
+"""
+Load in Model
+"""
 import pickle
 
-fitted_model = pickle.load(open("../model/amls_model_7-31-19/sc1_model.pkl","rb"))
+fitted_model = pickle.load(open("../model/amls_model_10-31-19/sc1_model.pkl","rb"))
 
 #%%
 """
@@ -135,11 +142,24 @@ Model Explanability
 """
 from azureml.explain.model._internal.explanation_client import ExplanationClient
 
-client = ExplanationClient.from_run_id(ws,
-                                       experiment_name = "automl-malariadream-sc1",
-                                       run_id = "AutoML_a87fe401-5f7c-414e-9173-3f23bd5b65a8_498")
+client = ExplanationClient.from_run(best_run)
+#client = ExplanationClient.from_run_id(ws,
+#                                       experiment_name = "automl-malariadream-sc1",
+#                                       run_id = "AutoML_a87fe401-5f7c-414e-9173-3f23bd5b65a8_498")
 
-#client = ExplanationClient.from_run(best_run)
+
 engineered_explanations = client.download_model_explanation(raw=False)
 print(engineered_explanations.get_feature_importance_dict())
 
+#from azureml.train.automl.automlexplainer import retrieve_model_explanation
+
+#shap_values, expected_values, overall_summary, overall_imp, per_class_summary, per_class_imp = \
+#    retrieve_model_explanation(best_run)
+
+#Overall feature importance
+#print(overall_imp)
+#print(overall_summary)
+
+#Class-level feature importance
+#print(per_class_imp)
+#print(per_class_summary)
