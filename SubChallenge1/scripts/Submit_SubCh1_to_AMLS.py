@@ -117,7 +117,7 @@ best_run, fitted_model = local_run.get_output()
 # print(best_run)
 # print(fitted_model)
 
-pickle.dump(fitted_model, open( "../model/amls_model_10-31-19/sc1_model.pkl", "wb" ) )
+pickle.dump(fitted_model, open( "../model/amls_model_10-25-19/sc1_model.pkl", "wb" ) )
 
 #%%
 """
@@ -125,7 +125,7 @@ Load in Model
 """
 import pickle
 
-fitted_model = pickle.load(open("../model/amls_model_10-31-19/sc1_model.pkl","rb"))
+fitted_model = pickle.load(open("../model/amls_model_10-25-19/sc1_model.pkl","rb"))
 
 #%%
 """

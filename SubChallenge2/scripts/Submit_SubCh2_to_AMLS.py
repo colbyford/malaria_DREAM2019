@@ -99,7 +99,7 @@ automl_config = AutoMLConfig(task = 'classification',
                              n_cross_validations = 10,
                              verbosity = logging.INFO,
                              model_explainability=True,
-                             X = X_train, 
+                             X = X_train,
                              y = y_train,
                              path = project_folder)
 
@@ -117,7 +117,7 @@ best_run, fitted_model = local_run.get_output()
 # print(best_run)
 # print(fitted_model)
 
-pickle.dump(fitted_model, open( "../model/amls_model_10-31-19/sc2_model.pkl", "wb" ) )
+pickle.dump(fitted_model, open( "../model/amls_model_10-25-19/sc2_model.pkl", "wb" ) )
 
 #%%
 """
@@ -125,7 +125,7 @@ Load in Model
 """
 import pickle
 
-fitted_model = pickle.load(open("../model/amls_model_10-31-19/sc2_model.pkl","rb"))
+fitted_model = pickle.load(open("../model/amls_model_10-25-19/sc2_model.pkl","rb"))
 
 #%%
 """
@@ -152,4 +152,3 @@ client = ExplanationClient.from_run_id(ws,
 #client = ExplanationClient.from_run(best_run)
 engineered_explanations = client.download_model_explanation(raw=False)
 print(engineered_explanations.get_feature_importance_dict())
-
