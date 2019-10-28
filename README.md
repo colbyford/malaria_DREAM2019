@@ -12,6 +12,12 @@
 
 </details>
 
+## Abstract
+Antiparasitic resistance in malaria is a growing concern affecting many areas of the eastern world. Since the emergence of artemisinin resistance in the late 2000s in Cambodia, research into the underlying mechanisms has been underway.
+The 2019 Malaria Dream Challenge posited the task of developing computational models that address important problems in advancing the fight against malaria. The first goal was to accurately predict Artemisinin drug resistance levels of _Plasmodium falciparum_ isolates, quantified by the IC50 The second goal was to predict the parasite clearance rate of malaria parasite isolates based on _in vitro_ transcriptional profiles.
+
+In this work, we develop novel methods for transforming isolate data and handling the tens of thousands of variables that result from these data transformation exercises. This is demonstrated by using massively parallel processing of the data vectorization for use in scalable machine learning. In addition, we show the utility of ensemble machine learning modeling for highly effective predictions of both goals of this challenge. This is demonstrated by the use of multiple machine learning algorithms combined with various scaling and normalization preprocessing steps. Then, using a voting ensemble, multiple models are combined to generate a final model prediction.
+
 # Malaria DREAM Challenge 2019
 <h1 align = "center">🦟 👨‍🔬 🧬</h1>
 
