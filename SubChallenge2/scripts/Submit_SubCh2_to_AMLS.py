@@ -17,6 +17,7 @@ import pandas as pd
 ## pip install -U azureml-sdk --user
 ## pip install -U azureml.core --user
 ## pip install -U azureml.train.automl --user
+## pip install -U azureml-explain-model --user
 
 ## On macOS, you may have to install `brew install libomp` and then `pip install lightgbm` and run the following:
 ## import os
@@ -80,10 +81,16 @@ outputDf.T
 """
 Load in Data
 """
+## From Pickles
 import pickle
 X_train = pickle.load(open("../data/sc2_X_train.pkl", "rb"))
 y_train = pickle.load(open("../data/sc2_y_train.pkl", "rb"))
 
+## From .csv
+#dataset = pd.read_csv("../data/SubCh2_TrainingData.csv")
+#X_train = dataset[dataset.columns[4:4955]]
+#y_train = dataset[dataset.columns[4956]]
+#y_train = dataset[['ClearanceRate']]
 #%%
 """
 Configure AutoML
@@ -117,7 +124,7 @@ best_run, fitted_model = local_run.get_output()
 # print(best_run)
 # print(fitted_model)
 
-pickle.dump(fitted_model, open( "../model/amls_model_10-25-19/sc2_model.pkl", "wb" ) )
+#pickle.dump(fitted_model, open( "../model/amls_model_10-25-19/sc2_model.pkl", "wb" ) )
 
 #%%
 """
