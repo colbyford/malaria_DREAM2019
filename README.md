@@ -1,5 +1,5 @@
 # Ensemble Machine Learning Modeling for the Prediction of Artemisinin Resistance in Malaria
-<p align = "right">By: Colby T. Ford, Ph.D., Tamar Carter, Ph.D., and Daniel Janies, Ph.D.</p>
+<p align = "right">By: Colby T. Ford, Ph.D. and Daniel Janies, Ph.D.</p>
 
 <details>
 <summary><strong><em>Table of Contents</em></strong></summary>
