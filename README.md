@@ -1,9 +1,10 @@
 # Ensemble Machine Learning Modeling for the Prediction of Artemisinin Resistance in Malaria
 <p align = "right">By: Colby T. Ford, Ph.D. and Daniel Janies, Ph.D.</p>
+<p align = "right">bioRxiv 856922; doi: <a href = "https://doi.org/10.1101/856922">https://doi.org/10.1101/856922</a></p>
 
 <details>
 <summary><strong><em>Table of Contents</em></strong></summary>
-  
+
 * [Malaria DREAM Challenge 2019](#malaria-dream-challenge-2019)
   - [About the Challenge](#about-the-challenge)
   - [Overall Modeling Approach](#overall-modeling-approach)
@@ -17,6 +18,21 @@ Antiparasitic resistance in malaria is a growing concern affecting many areas of
 The 2019 Malaria Dream Challenge posited the task of developing computational models that address important problems in advancing the fight against malaria. The first goal was to accurately predict Artemisinin drug resistance levels of _Plasmodium falciparum_ isolates, quantified by the IC50 The second goal was to predict the parasite clearance rate of malaria parasite isolates based on _in vitro_ transcriptional profiles.
 
 In this work, we develop novel methods for transforming isolate data and handling the tens of thousands of variables that result from these data transformation exercises. This is demonstrated by using massively parallel processing of the data vectorization for use in scalable machine learning. In addition, we show the utility of ensemble machine learning modeling for highly effective predictions of both goals of this challenge. This is demonstrated by the use of multiple machine learning algorithms combined with various scaling and normalization preprocessing steps. Then, using a voting ensemble, multiple models are combined to generate a final model prediction.
+
+## How to Cite
+```
+@article {Ford856922,
+	author = {Ford, Colby T and Janies, Daniel A},
+	title = {Ensemble Machine Learning Modeling for the Prediction of Artemisinin Resistance in Malaria},
+	elocation-id = {856922},
+	year = {2019},
+	doi = {10.1101/856922},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2019/11/27/856922},
+	eprint = {https://www.biorxiv.org/content/early/2019/11/27/856922.full.pdf},
+	journal = {bioRxiv}
+}
+```
 
 # Malaria DREAM Challenge 2019
 <h1 align = "center">🦟 👨‍🔬 🧬</h1>
