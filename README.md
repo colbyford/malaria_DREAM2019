@@ -1,4 +1,5 @@
 # Ensemble Machine Learning Modeling for the Prediction of Artemisinin Resistance in Malaria
+
 <p align = "right">By: Colby T. Ford, Ph.D. and Daniel Janies, Ph.D.</p>
 <p align = "right">bioRxiv 856922; doi: <a href = "https://doi.org/10.1101/856922">https://doi.org/10.1101/856922</a></p>
 
@@ -14,27 +15,31 @@
 </details>
 
 ## Abstract
+
 Antiparasitic resistance in malaria is a growing concern affecting many areas of the eastern world. Since the emergence of artemisinin resistance in the late 2000s in Cambodia, research into the underlying mechanisms has been underway.
+
 The 2019 Malaria Dream Challenge posited the task of developing computational models that address important problems in advancing the fight against malaria. The first goal was to accurately predict Artemisinin drug resistance levels of _Plasmodium falciparum_ isolates, quantified by the IC50 The second goal was to predict the parasite clearance rate of malaria parasite isolates based on _in vitro_ transcriptional profiles.
 
 In this work, we develop novel methods for transforming isolate data and handling the tens of thousands of variables that result from these data transformation exercises. This is demonstrated by using massively parallel processing of the data vectorization for use in scalable machine learning. In addition, we show the utility of ensemble machine learning modeling for highly effective predictions of both goals of this challenge. This is demonstrated by the use of multiple machine learning algorithms combined with various scaling and normalization preprocessing steps. Then, using a voting ensemble, multiple models are combined to generate a final model prediction.
 
 ## How to Cite
+
 ```
 @article {Ford856922,
-	author = {Ford, Colby T and Janies, Daniel A},
-	title = {Ensemble Machine Learning Modeling for the Prediction of Artemisinin Resistance in Malaria},
-	elocation-id = {856922},
-	year = {2019},
-	doi = {10.1101/856922},
-	publisher = {Cold Spring Harbor Laboratory},
-	URL = {https://www.biorxiv.org/content/early/2019/11/27/856922},
-	eprint = {https://www.biorxiv.org/content/early/2019/11/27/856922.full.pdf},
-	journal = {bioRxiv}
+    author = {Ford, Colby T and Janies, Daniel A},
+    title = {Ensemble Machine Learning Modeling for the Prediction of Artemisinin Resistance in Malaria},
+    elocation-id = {856922},
+    year = {2019},
+    doi = {10.1101/856922},
+    publisher = {Cold Spring Harbor Laboratory},
+    URL = {https://www.biorxiv.org/content/early/2019/11/27/856922},
+    eprint = {https://www.biorxiv.org/content/early/2019/11/27/856922.full.pdf},
+    journal = {bioRxiv}
 }
 ```
 
 # Malaria DREAM Challenge 2019
+
 <h1 align = "center">🦟 👨‍🔬 🧬</h1>
 
 <p align = "right">Submission by: Colby T. Ford, Ph.D.</p>
@@ -58,14 +63,15 @@ The Malaria DREAM Challenge is open to anyone interested in contributing to the 
 __Topic:__ Predict the Artemisinin (Art) IC50 (drug concentration at which 50% of parasites die) of malaria isolates using in vitro transcriptomics data.
 
 __Data:__ Transcription profiles of all 55 malaria parasite isolates along with the IC50 (drug concentration at which 50% of parasites die) values.
- - Training set: 30 malaria parasite isolates
- - Test Set: 25 malaria parasite isolates.
+
+- Training set: 30 malaria parasite isolates
+- Test Set: 25 malaria parasite isolates.
 
 The transcription data consists of 5540 genes from the malaria parasite, _Plasmodium falciparum_. For each malaria parasite isolate, transcription data was collected at two time points (6 hours post invasion (hpi) and 24hpi), perturbed and un-perturbed with dihydroartemisinin (the metabolically active form of artemisinin), with a biological replicate each, for a grand total of at least eight data points per parasite isolate.
 
-| (Adapted with permission from Turnbull et al., (2017) PLoS One) | Training Set |        Test Set       |
+| (Adapted with permission from Turnbull et al., (2017) PLoS One) | Training Set | Test Set              |
 |:---------------------------------------------------------------:|:------------:|:---------------------:|
-|  Array                                                          | Bozdech      | Agilent HD Exon Array |
+| Array                                                           | Bozdech      | Agilent HD Exon Array |
 | Platform                                                        | Printed      | Agilent               |
 | Plexes                                                          | 1            | 8                     |
 | Unique Probes                                                   | 10159        | 62976                 |
@@ -88,7 +94,7 @@ The transcription data consists of 5540 genes from the malaria parasite, _Plasmo
 
 **Training Parameters:** The following are the training parameters for the Azure Machine Learning Service:
 
-|          Parameter          |                Value               |
+| Parameter                   | Value                              |
 |:---------------------------:|:----------------------------------:|
 | Task                        | Regression                         |
 | Number of Iterations        | 500                                |
@@ -640,16 +646,16 @@ __Topic:__ Utilizing a previously published _in vivo_ transcription data set fro
 
 __Data:__ _in vivo_ transcription data set ([Mok et al,. Science 2015](https://www.ncbi.nlm.nih.gov/pubmed/25502316)) to predict the parasite clearance rate of malaria parasite isolates based on in vitro transcriptional profiles.
 
-|                               |                           Training Set                           |                                          Test Set                                          |
-|:-----------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------------------------------:|
-| Dataset                       | Published from [Mok et al,. Science 2015](https://www.ncbi.nlm.nih.gov/pubmed/25502316)                                                   | Unpublished                                                                                |
-| Number of Isolates            | 1043                                                             | 32                                                                                         |
-| Isolate Collection Site       | Southeast Asia                                                   | Thai-Myanmar Border                                                                        |
-| Isolate Collection Years      | 2012-2014                                                        | 2007-2012                                                                                  |
-| Sample Type                   | _in vivo_                                                        | _in vitro_                                                                                 |
-| Synchronized?                 | Not Synchronized                                                 | Synchronized                                                                               |
-| Number of Samples per Isolate | 1                                                                | 8                                                                                          |
-| Additional Attributes         |  ~18 Hours Post Invasion (hpi), Non-perturbed, No replicates | Two time points (6 hpi and 24 hpi), Perturbed and Non-perturbed, Biological Replicate |
+|                               | Training Set                                                                            | Test Set                                                                              |
+|:-----------------------------:|:---------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:|
+| Dataset                       | Published from [Mok et al,. Science 2015](https://www.ncbi.nlm.nih.gov/pubmed/25502316) | Unpublished                                                                           |
+| Number of Isolates            | 1043                                                                                    | 32                                                                                    |
+| Isolate Collection Site       | Southeast Asia                                                                          | Thai-Myanmar Border                                                                   |
+| Isolate Collection Years      | 2012-2014                                                                               | 2007-2012                                                                             |
+| Sample Type                   | _in vivo_                                                                               | _in vitro_                                                                            |
+| Synchronized?                 | Not Synchronized                                                                        | Synchronized                                                                          |
+| Number of Samples per Isolate | 1                                                                                       | 8                                                                                     |
+| Additional Attributes         | ~18 Hours Post Invasion (hpi), Non-perturbed, No replicates                             | Two time points (6 hpi and 24 hpi), Perturbed and Non-perturbed, Biological Replicate |
 
 ### Subchallenge 2 Final Submission
 
@@ -661,15 +667,15 @@ __Data:__ _in vivo_ transcription data set ([Mok et al,. Science 2015](https://w
 
 **Training Parameters:** The following are the training parameters for the Azure Machine Learning Service:
 
-|          Parameter          |                Value               |
-|:---------------------------:|:----------------------------------:|
-| Task                        | Classification                     |
-| Number of Iterations        | 100                                |
-| Iteration Timeout (minutes) | 20                                 |
-| Max Cores per Iteration     | 14                                 |
-| Primary Metric              | Weighted AUC					   |
-| Preprocess Data?            | True                               |
-| k-Fold Cross-Validations    | 10 folds                           |
+| Parameter                   | Value          |
+|:---------------------------:|:--------------:|
+| Task                        | Classification |
+| Number of Iterations        | 100            |
+| Iteration Timeout (minutes) | 20             |
+| Max Cores per Iteration     | 14             |
+| Primary Metric              | Weighted AUC   |
+| Preprocess Data?            | True           |
+| k-Fold Cross-Validations    | 10 folds       |
 
 - [Submission Script for SubChallenge 2 Data to AMLS](https://github.com/colbyford/malaria_DREAM2019/blob/master/SubChallenge2/scripts/Submit_SubCh2_to_AMLS.py)
 
@@ -720,7 +726,7 @@ __Data:__ _in vivo_ transcription data set ([Mok et al,. Science 2015](https://w
 
 ## All Previous Iterations:
 
-| ITERATION |    RUN_PREPROCESSOR   |    RUN_ALGORITHM   | AUC_WEIGHTED |
+| ITERATION | RUN_PREPROCESSOR      | RUN_ALGORITHM      | AUC_WEIGHTED |
 |:---------:|:---------------------:|:------------------:|:------------:|
 | 98        |                       | VotingEnsemble     | 0.870471056  |
 | 99        |                       | StackEnsemble      | 0.865215516  |
@@ -819,11 +825,13 @@ __Data:__ _in vivo_ transcription data set ([Mok et al,. Science 2015](https://w
 | 48        | RobustScaler          | KNN                | 0.738236639  |
 | 10        | MinMaxScaler          | RandomForest       | 0.738015441  |
 
+---
 
--------------------------------------
 ## Discussion
+
 By using distributed processing of the data preparation, we can successfully shape and manage a malaria dataset of over 40,000 genetic attributes. This is complete with scalable vectorization of the training data, which allowed for many machine learning models to be generated. By tracking the individual performance results of each machine learning model, we can determine which model is most useful. In addition, ensemble modeling of the various singular models proved effective for both subchallenges in this work.
 
 ## References
+
 1. NIEHS-NCATS-UNC DREAM Toxicogenetics Challenge ([syn1761567](https://www.synapse.org/#!Synapse:syn1761567))
 2. Caruana, R., Niculescu-Mizil, A., Crew, G. & Ksikes, A. Ensemble selection from libraries of models. _In Proceedings of the Twenty-first International Conference on Machine Learning_, ICML ’04, 18–, DOI: 10.1145/1015330.1015432 (ACM,New York, NY, USA, 2004).
