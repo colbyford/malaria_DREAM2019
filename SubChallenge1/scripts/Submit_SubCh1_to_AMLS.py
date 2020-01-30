@@ -125,7 +125,7 @@ Load in Model
 """
 import pickle
 
-fitted_model = pickle.load(open("../model/amls_model_10-25-19/sc1_model.pkl","rb"))
+fitted_model = pickle.load(open("../model/amls_model_7-31-19/sc1_model.pkl","rb"))
 
 #%%
 """
