@@ -1,7 +1,7 @@
 # Ensemble Machine Learning Modeling for the Prediction of Artemisinin Resistance in Malaria
 
 <p align = "right">By: Colby T. Ford, Ph.D. and Daniel Janies, Ph.D.</p>
-<p align = "right">bioRxiv 856922; doi: <a href = "https://doi.org/10.1101/856922">https://doi.org/10.1101/856922</a> (Submitted to F1000)</p>
+<p align = "right">F1000 Research 2020; doi: <a href = "https://doi.org/10.12688/f1000research.21539.1">https://doi.org/10.12688/f1000research.21539.1</a></p>
 
 <details>
 <summary><strong><em>Table of Contents</em></strong></summary>
@@ -24,17 +24,17 @@ In this work, we develop novel methods for transforming isolate data and handlin
 
 ## How to Cite
 
-```
-@article {Ford856922,
-    author = {Ford, Colby T and Janies, Daniel A},
-    title = {Ensemble Machine Learning Modeling for the Prediction of Artemisinin Resistance in Malaria},
-    elocation-id = {856922},
-    year = {2019},
-    doi = {10.1101/856922},
-    publisher = {Cold Spring Harbor Laboratory},
-    URL = {https://www.biorxiv.org/content/early/2019/11/27/856922},
-    eprint = {https://www.biorxiv.org/content/early/2019/11/27/856922.full.pdf},
-    journal = {bioRxiv}
+```latex
+@Article{10.12688/f1000research.21539.1,
+
+AUTHOR = { Ford, CT and Janies, D},
+TITLE = {{Ensemble Machine Learning Modeling for the Prediction of Artemisinin Resistance in Malaria}},
+
+JOURNAL = {F1000Research},
+VOLUME = {9},
+YEAR = {2020},
+NUMBER = {62},
+DOI = {10.12688/f1000research.21539.1}
 }
 ```
 
