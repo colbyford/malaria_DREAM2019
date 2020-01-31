@@ -26,7 +26,7 @@ In this work, we develop novel methods for transforming isolate data and handlin
 
 ```latex
 @Article{10.12688/f1000research.21539.1,
-AUTHOR = {Ford, CT and Janies, D},
+AUTHOR = {Ford, C.T. and Janies, D.},
 TITLE = {{Ensemble Machine Learning Modeling for the Prediction of Artemisinin Resistance in Malaria}},
 JOURNAL = {F1000Research},
 VOLUME = {9},
