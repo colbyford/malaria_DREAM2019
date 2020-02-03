@@ -3,7 +3,7 @@
 <p align = "right">By: Colby T. Ford, Ph.D. and Daniel Janies, Ph.D.</p>
 <p align = "right">F1000 Research 2020; doi: <a href = "https://doi.org/10.12688/f1000research.21539.1">https://doi.org/10.12688/f1000research.21539.1</a></p>
 
-Data: [![DOI](https://zenodo.org/badge/189651502.svg)](https://zenodo.org/badge/latestdoi/189651502)
+Scripts and Data: [![DOI](https://zenodo.org/badge/189651502.svg)](https://zenodo.org/badge/latestdoi/189651502)
 
 <details>
 <summary><strong><em>Table of Contents</em></strong></summary>
